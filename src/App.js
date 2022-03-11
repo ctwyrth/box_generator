@@ -4,16 +4,18 @@ import BoxForm from './components/BoxForm';
 import Boxes from './components/Boxes';
 
 function App() {
-  const [colorBoxes, setColorBoxes] = useState("");
+  const [colorBox, setColorBox] = useState("");
+  const [colorBoxes, setColorBoxes] = useState([]);
 
-  const colorBox = ( newColorBox ) => {
-    setColorBoxes( newColorBox );
+  const handleColorBox = ( newColorBox ) => {
+    setColorBox( newColorBox );
+    setColorBoxes([...colorBoxes, newColorBox])
   }
 
   return (
     <div className="App">
-      <BoxForm onNewBox={ colorBox } />
-      <Boxes newBoxes={ colorBoxes } />
+      <BoxForm onNewBox={ handleColorBox } />
+      <Boxes colorBox={ colorBox } colorBoxes={ colorBoxes } />
     </div>
   );
 }
